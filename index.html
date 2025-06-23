@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AICrafter - AI Image & Video Generator</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #00ffd5;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin-top: 20px;
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #00ffd5;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 30px;
+    }
+
+    img, video {
+      max-width: 90%;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌟 AICrafter</h1>
+  <p>Generate AI-powered images & videos from your imagination!</p>
+
+  <input id="prompt" type="text" placeholder="Enter your prompt..." />
+  <div class="button-group">
+    <button onclick="generateImage()">Generate Image</button>
+    <button onclick="generateVideo()">Generate Video</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script>
+    function generateImage() {
+      const prompt = document.getElementById("prompt").value;
+      const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}`;
+      document.getElementById("output").innerHTML = `<img src="${url}" alt="AI Image Result">`;
+    }
+
+    function generateVideo() {
+      const prompt = document.getElementById("prompt").value;
+      const base = "https://huggingface.co/spaces/damo-vilab/text-to-video-ms-1.7b";
+      document.getElementById("output").innerHTML = `
+        <p>Video might take time. If nothing shows, try on the original site:</p>
+        <a href="${base}" target="_blank">${base}</a>
+      `;
+    }
+  </script>
+
+</body>
+</html>
